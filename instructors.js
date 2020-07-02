@@ -9,6 +9,9 @@ exports.post = (request, response) => {
       return response.send('Please, fill all fields!')
   }
 
+  request.body.birth = Date.parse(request.body.birth)
+  request.body.created_at = Date.now()
+
   data.instructors.push(request.body)
 
   fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
