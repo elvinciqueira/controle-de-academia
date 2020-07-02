@@ -1,8 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
+@keyframes up {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 :root {
   --primary-color: #7159c1;
+  --secondary-color: #F7DF1E;
   --gray: #777;
+  --gray-2: #aaa;
+  --gray-3: #555;
   --white: #fff;
 }
 
@@ -69,20 +83,69 @@ header {
 .card {
   background-color: var(--white);
   margin: 45px auto;
-  height: 400px;
+  min-height: 400px;
   width: 800px;
 
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 
   box-shadow: 0px 2px 6px -2px rgba(0, 0, 0, 0.4);
+
+  animation: up 200ms ease-out;
 }
 
 .avatar {
-  height: 400px;
-  width: 400px;
   background-image: url("https://source.unsplash.com/collection/8969654/500x500");
   background-size: cover;
   background-repeat: no-repeat;
   
+}
+
+/* Details */
+
+.details {
+  padding: 32px;
+}
+
+.details .item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 16px 0;
+}
+
+.details .item:last-child {
+  border: none;
+}
+
+.details h3,
+.details .item div:nth-child(1) {
+  color: var(--gray);
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.7px;
+  font-weight: normal;
+}
+
+.detials .item div:nth-child(2) {
+  color: var(--gray-3);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.details h3 {
+  color: var(--primary-color);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.details .item span {
+  background-color: var(--secondary-color);
+  border-radius: 16px;
+  color: var(--gray);
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  margin-right: 4px;
+  margin-top: 8px;
+  padding: 8px 16px;
+  text-transform: uppercase;
 }
