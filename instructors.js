@@ -1,3 +1,6 @@
+const fs = require('fs')
+const data = require('./data.json')
+
 exports.post = (request, response) => {
   const keys = Object.keys(request.body)
 
@@ -6,5 +9,11 @@ exports.post = (request, response) => {
       return response.send('Please, fill all fields!')
   }
 
-  return response.send(request.body)
+  data.instructors.push(request.body)
+
+  fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
+    if (err) return response.send('Error on file')
+
+    return response.redirect('/instructors')
+  })
 }
