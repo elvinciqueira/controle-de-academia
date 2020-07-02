@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+  --primary-color: #7159c1;
+  --gray: #777;
+  --white: #fff;
+}
+
+* {
+  border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--primary-color);
+  font-family: 'Roboto', sans-serif;
+}
+
+header {
+  background-color: var(--white);
+  padding: 32px;
+  text-align: center;
+  width: 100%;
+}
+
+.links {
+  font-size: 22px;
+}
+
+.links a + a {
+  margin-left: 32px;
+}
+
+.links a {
+  color: var(--gray);
+  position: relative;
+  text-decoration: none;
+}
+
+.links a.active {
+  color: var(--primary-color);
+  font-weight: 700;
+} 
+
+.links a:hover {
+  color: var(--primary-color);
+}
+
+.links a::after {
+  content: '';
+  background-color: var(--primary-color);
+  height: 2px;
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+}
+
+.links a:hover::after {
+  transition: width 200ms ease-in-out;
+  width: 100%;
+}
+
+
+/* CARDS */
+
+.card {
+  background-color: var(--white);
+  margin: 45px auto;
+  height: 400px;
+  width: 800px;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  box-shadow: 0px 2px 6px -2px rgba(0, 0, 0, 0.4);
+}
+
+.avatar {
+  height: 400px;
+  width: 400px;
+  background-image: url("https://source.unsplash.com/collection/8969654/500x500");
+  background-size: cover;
+  background-repeat: no-repeat;
+  
+}
