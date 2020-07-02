@@ -1,5 +1,6 @@
 const express = require('express')
 const routes = express.Router()
+const instructors = require('./instructors')
 
 routes.get('/', (request, response) => {
   return response.redirect('/instructors')
@@ -9,16 +10,7 @@ routes.get('/instructors', (request, response) => {
   return response.render('Instructors/index')
 })
 
-routes.post('/instructors', (request, response) => {
-  const keys = Object.keys(request.body)
-
-  for (key of keys) {
-    if (request.body[key] === '')
-      return response.send('Please, fill all fields!')
-  }
-
-  return response.send(request.body)
-})
+routes.post('/instructors', instructors.post)
 
 routes.get('/instructors/create', (request, response) => {
   return response.render('Instructors/create')
