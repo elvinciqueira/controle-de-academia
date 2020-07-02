@@ -10,7 +10,14 @@ routes.get('/instructors', (request, response) => {
 })
 
 routes.post('/instructors', (request, response) => {
-  return response.send('recebido')
+  const keys = Object.keys(request.body)
+
+  for (key of keys) {
+    if (request.body[key] === '')
+      return response.send('Please, fill all fields!')
+  }
+
+  return response.send(request.body)
 })
 
 routes.get('/instructors/create', (request, response) => {
