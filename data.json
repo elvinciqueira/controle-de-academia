@@ -2,12 +2,21 @@
   "instructors": [
     {
       "id": 1,
-      "avatar_url": "http://google.com",
-      "name": "uadhsuhud",
+      "avatar_url": "https://unsplash.com/photos/5UbIqV58CW8/500x500",
+      "name": "Elvin Ciqueira",
       "birth": 39255926400000,
       "gender": "M",
-      "services": "auhsduahdu",
+      "services": "Musculação, Crossfit, natação",
       "created_at": 1593731823699
+    },
+    {
+      "id": 2,
+      "avatar_url": "https://source.unsplash.com/collection/8969654/500x500",
+      "name": "Natasha ",
+      "birth": 918172800000,
+      "gender": "F",
+      "services": "Crossfit, Dança",
+      "created_at": 1593734285008
     }
   ]
 }

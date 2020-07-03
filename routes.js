@@ -16,6 +16,8 @@ routes.get('/instructors/create', (request, response) => {
   return response.render('Instructors/create')
 })
 
+routes.get('/instructors/:id', instructors.show)
+
 routes.get('/members', (request, response) => {
   return response.send('/members')
 })
