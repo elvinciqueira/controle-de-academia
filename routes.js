@@ -10,7 +10,6 @@ routes.get('/instructors', (request, response) => {
   return response.render('Instructors/index')
 })
 
-routes.post('/instructors', instructors.post)
 
 routes.get('/instructors/create', (request, response) => {
   return response.render('Instructors/create')
@@ -19,6 +18,10 @@ routes.get('/instructors/create', (request, response) => {
 routes.get('/instructors/:id', instructors.show)
 
 routes.get('/instructors/:id/edit', instructors.edit)
+
+routes.post('/instructors', instructors.post)
+
+routes.put('/instructors', instructors.put)
 
 routes.get('/members', (request, response) => {
   return response.send('/members')
