@@ -260,7 +260,7 @@ td:last-child {
   text-align: center;
 }
 
-.table-container tr td span {
+.table-container tr td:nth-child(2) span {
   background-color: var(--secondary-color);
   border-radius: 16px;
   color: var(--gray);
