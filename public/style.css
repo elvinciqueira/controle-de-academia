@@ -17,6 +17,7 @@
   --gray: #777;
   --gray-2: #aaa;
   --gray-3: #555;
+  --gray-4: #d9d9d9;
   --white: #fff;
 }
 
@@ -195,4 +196,79 @@ a.button {
 #form-delete button[type="submit"] {
   background-color: lightcoral;
   margin-top: 8px;
+}
+
+
+/* Index Instructors */
+
+.table-container {
+  display: block;
+  padding: 40px;
+}
+
+.table-container table {
+  border-spacing: 0;
+}
+
+.table-container thead tr th {
+  text-align: left;
+}
+
+td, th {
+  border-bottom: 1px solid var(--gray-4);
+  padding: 16px;
+}
+
+th {
+  color: var(--gray);
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr td:first-child {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 64px 1fr;
+}
+
+tbody tr td:first-child span {
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  box-shadow: 3px 1px 6px -4px rgba(0, 0, 0);
+  border: 2px solid var(--white);
+  height: 48px;
+  width: 48px;
+}
+
+tbody tr td:last-child a {
+  color: var(--white);
+  background-color: var(--primary-color);
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.table-container thead tr th:last-child,
+td:last-child {
+  text-align: center;
+}
+
+.table-container tr td span {
+  background-color: var(--secondary-color);
+  border-radius: 16px;
+  color: var(--gray);
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  margin-right: 4px;
+  margin-top: 8px;
+  padding: 8px 16px;
+  text-transform: uppercase;
 }

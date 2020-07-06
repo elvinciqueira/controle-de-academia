@@ -21,6 +21,10 @@ exports.show = (request, response) => {
   return response.render('Instructors/show', { instructor })
 }
 
+exports.index = (request, response) => {
+  return response.render('Instructors/index', { instructors: data.instructors })
+}
+
 exports.post = (request, response) => {
   const keys = Object.keys(request.body)
 
@@ -91,7 +95,8 @@ exports.put = (request, response) => {
   const instructor = {
     ...foundInstructor,
     ...request.body,
-    birth: Date.parse(request.body.birth)
+    birth: Date.parse(request.body.birth),
+    id: Number(request.body.id)
   }
 
   data.instructors[index] = instructor
