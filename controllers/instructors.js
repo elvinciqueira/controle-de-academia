@@ -75,8 +75,6 @@ exports.edit = (request, response) => {
     birth: date(foundInstructor.birth),
   }
 
-  console.log(instructor)
-
   return response.render('Instructors/edit', { instructor })
 }
 
@@ -88,9 +86,11 @@ exports.put = (request, response) => {
     if (instructor.id == id) {
       index = foundIndex
 
-      return true
+      return true;
     }
   })
+
+  console.log('teste', foundInstructor)
 
   if (!foundInstructor) {
     return response.send('Instructor not found')

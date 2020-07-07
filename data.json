@@ -2,21 +2,12 @@
   "members": [],
   "instructors": [
     {
-      "id": 1,
-      "avatar_url": "https://images.unsplash.com/photo-1548690312-e3b507d8c110?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
-      "name": "Tony Stark",
-      "birth": 39255926400000,
-      "gender": "M",
-      "services": "Musculação, Crossfit, natação",
-      "created_at": 1593731823699
-    },
-    {
       "id": 2,
       "avatar_url": "https://images.unsplash.com/photo-1548690312-e3b507d8c110?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
       "name": "Bruce Banner",
-      "birth": 39255926400000,
+      "birth": 945734400000,
       "gender": "M",
-      "services": "Musculação, Crossfit, natação",
+      "services": "Musculação, Crossfit, natação ",
       "created_at": 1593731823699
     }
   ]
