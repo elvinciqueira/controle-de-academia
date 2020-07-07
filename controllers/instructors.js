@@ -1,6 +1,6 @@
 const fs = require('fs')
-const data = require('./data.json')
-const { age, date } = require('./utils')
+const data = require('../data.json')
+const { age, date } = require('../utils')
 
 exports.show = (request, response) => {
   const { id } = request.params
@@ -23,6 +23,10 @@ exports.show = (request, response) => {
 
 exports.index = (request, response) => {
   return response.render('Instructors/index', { instructors: data.instructors })
+}
+
+exports.create = (request, response) => {
+  return response.render('Instructors/create')
 }
 
 exports.post = (request, response) => {
