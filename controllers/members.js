@@ -67,14 +67,12 @@ exports.edit = (request, response) => {
   }
 
 
-  const members = {
+  const member = {
     ...foundMembers,
-    birth: date(foundMembers.birth),
+    birth: date(foundMembers.birth).iso,
   }
 
-  console.log(members)
-
-  return response.render('members/edit', { members })
+  return response.render('members/edit', { member })
 }
 
 exports.put = (request, response) => {
@@ -93,14 +91,14 @@ exports.put = (request, response) => {
     return response.send('Members not found')
   }
 
-  const members = {
+  const member = {
     ...foundMembers,
     ...request.body,
     birth: Date.parse(request.body.birth),
     id: Number(request.body.id)
   }
 
-  data.members[index] = members
+  data.members[index] = member
 
   fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
     if (err) return response.send('Write error!')
