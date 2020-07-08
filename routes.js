@@ -15,7 +15,6 @@ routes.post('/instructors', instructors.post)
 routes.put('/instructors', instructors.put)
 routes.delete('/instructors', instructors.delete)
 
-
 routes.get('/members', members.index)
 routes.get('/members/create', members.create)
 routes.get('/members/:id', members.show)

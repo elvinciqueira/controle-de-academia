@@ -56,7 +56,7 @@ exports.post = (request, response) => {
   fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
     if (err) return response.send('Error on file')
 
-    return response.redirect('/instructors')
+    return response.redirect(`instructors/${id}`)
   })
 }
 
@@ -72,7 +72,7 @@ exports.edit = (request, response) => {
 
   const instructor = {
     ...foundInstructor,
-    birth: date(foundInstructor.birth),
+    birth: date(foundInstructor.birth).iso,
   }
 
   return response.render('Instructors/edit', { instructor })

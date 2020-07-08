@@ -1,6 +1,6 @@
 const fs = require('fs')
 const data = require('../data.json')
-const { age, date } = require('../utils')
+const { date } = require('../utils')
 
 exports.show = (request, response) => {
   const { id } = request.params
@@ -11,12 +11,12 @@ exports.show = (request, response) => {
     return response.send('Members not found')
   }
 
-  const members = {
+  const member = {
     ...foundMembers,
-    age: age(foundMembers.birth),
+    birth: date(foundMembers.birth).birthDay,
   }
 
-  return response.render('members/show', { members })
+  return response.render('members/show', { member })
 }
 
 exports.index = (request, response) => {
@@ -35,26 +35,25 @@ exports.post = (request, response) => {
       return response.send('Please, fill all fields!')
   }
 
-  let { avatar_url, birth, gender, name, services } = request.body
+  birth = Date.parse(request.body.birth)
 
-  birth = Date.parse(birth)
-  const created_at = Date.now()
-  const id = Number(data.members.length + 1)
+  let id = 1;
+  const lastMember = data.members[data.members.length - 1]
+
+  if (lastMember) {
+    id = lastMember.id + 1
+  }
 
   data.members.push({
     id,
-    avatar_url,
-    name,
+    ...request.body,
     birth,
-    gender,
-    services,
-    created_at,
   })
 
   fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
     if (err) return response.send('Error on file')
 
-    return response.redirect('/members')
+    return response.redirect(`members/${id}`)
   })
 }
 
