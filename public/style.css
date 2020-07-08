@@ -159,7 +159,8 @@ header {
 
 /* FORM  */
 
-input {
+input, 
+select {
   color: var(--gray-3);
   font-size: 18px;
   font-weight: 700;
