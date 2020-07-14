@@ -7,8 +7,8 @@
   "license": "MIT",
   "scripts": {
     "start": "npm-run-all -p dev:server browsersync",
-    "dev:server": "nodemon server.js",
-    "browsersync": "browser-sync start --proxy http://localhost:3333 --files 'public,views'"
+    "dev:server": "nodemon src/server.js",
+    "browsersync": "browser-sync start --proxy http://localhost:3333 --files 'public, src/app/views'"
   },
   "devDependencies": {
     "browser-sync": "^2.26.7",
