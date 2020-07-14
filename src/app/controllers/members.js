@@ -1,121 +1,49 @@
-const fs = require('fs');
-const data = require('../data.json');
-const { date } = require('../utils');
+const { age, date } = require('../../lib/utils');
 
-exports.show = (request, response) => {
-  const { id } = request.params;
+module.exports = {
+  show(request, response) {
+    return;
+  },
 
-  const foundMembers = data.members.find((members) => members.id == id);
+  index(request, response) {
+    return response.render('Instructors/index');
+  },
 
-  if (!foundMembers) {
-    return response.send('Members not found');
-  }
+  create(request, response) {
+    return response.render('Instructors/create');
+  },
 
-  const member = {
-    ...foundMembers,
-    birth: date(foundMembers.birth).birthDay,
-  };
+  post(request, response) {
+    const keys = Object.keys(request.body);
 
-  return response.render('members/show', { member });
-};
-
-exports.index = (request, response) => {
-  return response.render('members/index', { members: data.members });
-};
-
-exports.create = (request, response) => {
-  return response.render('members/create');
-};
-
-exports.post = (request, response) => {
-  const keys = Object.keys(request.body);
-
-  for (key of keys) {
-    if (request.body[key] === '')
-      return response.send('Please, fill all fields!');
-  }
-
-  birth = Date.parse(request.body.birth);
-
-  let id = 1;
-  const lastMember = data.members[data.members.length - 1];
-
-  if (lastMember) {
-    id = lastMember.id + 1;
-  }
-
-  data.members.push({
-    id,
-    ...request.body,
-    birth,
-  });
-
-  fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
-    if (err) return response.send('Error on file');
-
-    return response.redirect(`members/${id}`);
-  });
-};
-
-exports.edit = (request, response) => {
-  const { id } = request.params;
-
-  const foundMembers = data.members.find((members) => members.id == id);
-
-  if (!foundMembers) {
-    return response.send('Members not found');
-  }
-
-  const member = {
-    ...foundMembers,
-    birth: date(foundMembers.birth).iso,
-  };
-
-  return response.render('members/edit', { member });
-};
-
-exports.put = (request, response) => {
-  const { id } = request.body;
-  let index = 0;
-
-  const foundMembers = data.members.find((members, foundIndex) => {
-    if (members.id == id) {
-      index = foundIndex;
-
-      return true;
+    for (key of keys) {
+      if (request.body[key] === '')
+        return response.send('Please, fill all fields!');
     }
-  });
 
-  if (!foundMembers) {
-    return response.send('Members not found');
-  }
+    let { avatar_url, birth, gender, name, services } = request.body;
 
-  const member = {
-    ...foundMembers,
-    ...request.body,
-    birth: Date.parse(request.body.birth),
-    id: Number(request.body.id),
-  };
+    return;
+  },
 
-  data.members[index] = member;
+  edit(request, response) {
+    return;
+  },
 
-  fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
-    if (err) return response.send('Write error!');
+  put(request, response) {
+    const keys = Object.keys(request.body);
 
-    return response.redirect(`members/${id}`);
-  });
-};
+    for (key of keys) {
+      if (request.body[key] === '')
+        return response.send('Please, fill all fields!');
+    }
 
-exports.delete = (request, response) => {
-  const { id } = request.body;
+    let { avatar_url, birth, gender, name, services } = request.body;
 
-  const filteredMembers = data.members.filter((members) => members.id != id);
+    return;
+  },
 
-  data.members = filteredMembers;
-
-  fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
-    if (err) return response.send('Write file error');
-
-    return response.redirect('/members');
-  });
+  delete(request, response) {
+    return;
+  },
 };

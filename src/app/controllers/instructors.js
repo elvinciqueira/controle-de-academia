@@ -1,134 +1,45 @@
-const fs = require('fs');
-const data = require('../data.json');
-const { age, date } = require('../utils');
+const { age, date } = require('../../lib/utils');
 
-exports.show = (request, response) => {
-  const { id } = request.params;
+module.exports = {
+  show(request, response) {
+    return;
+  },
 
-  const foundInstructor = data.instructors.find(
-    (instructor) => instructor.id == id
-  );
+  index(request, response) {
+    return response.render('Instructors/index');
+  },
 
-  if (!foundInstructor) {
-    return response.send('Instructor not found');
-  }
+  create(request, response) {
+    return response.render('Instructors/create');
+  },
 
-  const instructor = {
-    ...foundInstructor,
-    age: age(foundInstructor.birth),
-    services: foundInstructor.services.split(','),
-    created_at: Intl.DateTimeFormat('pt-BR').format(foundInstructor.created_at),
-  };
+  post(request, response) {
+    const keys = Object.keys(request.body);
 
-  return response.render('Instructors/show', { instructor });
-};
-
-exports.index = (request, response) => {
-  return response.render('Instructors/index', {
-    instructors: data.instructors,
-  });
-};
-
-exports.create = (request, response) => {
-  return response.render('Instructors/create');
-};
-
-exports.post = (request, response) => {
-  const keys = Object.keys(request.body);
-
-  for (key of keys) {
-    if (request.body[key] === '')
-      return response.send('Please, fill all fields!');
-  }
-
-  let { avatar_url, birth, gender, name, services } = request.body;
-
-  birth = Date.parse(birth);
-  const created_at = Date.now();
-  const id = Number(data.instructors.length + 1);
-
-  data.instructors.push({
-    id,
-    avatar_url,
-    name,
-    birth,
-    gender,
-    services,
-    created_at,
-  });
-
-  fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
-    if (err) return response.send('Error on file');
-
-    return response.redirect(`instructors/${id}`);
-  });
-};
-
-exports.edit = (request, response) => {
-  const { id } = request.params;
-
-  const foundInstructor = data.instructors.find(
-    (instructor) => instructor.id == id
-  );
-
-  if (!foundInstructor) {
-    return response.send('Instructor not found');
-  }
-
-  const instructor = {
-    ...foundInstructor,
-    birth: date(foundInstructor.birth).iso,
-  };
-
-  return response.render('Instructors/edit', { instructor });
-};
-
-exports.put = (request, response) => {
-  const { id } = request.body;
-  let index = 0;
-
-  const foundInstructor = data.instructors.find((instructor, foundIndex) => {
-    if (instructor.id == id) {
-      index = foundIndex;
-
-      return true;
+    for (key of keys) {
+      if (request.body[key] === '')
+        return response.send('Please, fill all fields!');
     }
-  });
 
-  console.log('teste', foundInstructor);
+    return;
+  },
 
-  if (!foundInstructor) {
-    return response.send('Instructor not found');
-  }
+  edit(request, response) {
+    return;
+  },
 
-  const instructor = {
-    ...foundInstructor,
-    ...request.body,
-    birth: Date.parse(request.body.birth),
-    id: Number(request.body.id),
-  };
+  put(request, response) {
+    const keys = Object.keys(request.body);
 
-  data.instructors[index] = instructor;
+    for (key of keys) {
+      if (request.body[key] === '')
+        return response.send('Please, fill all fields!');
+    }
 
-  fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
-    if (err) return response.send('Write error!');
+    return;
+  },
 
-    return response.redirect(`instructors/${id}`);
-  });
-};
-
-exports.delete = (request, response) => {
-  const { id } = request.body;
-
-  const filteredInstructors = data.instructors.filter(
-    (instructor) => instructor.id != id
-  );
-
-  data.instructors = filteredInstructors;
-
-  fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
-    if (err) return response.send('Write file error');
-
-    return response.redirect('/instructors');
-  });
+  delete(request, response) {
+    return;
+  },
 };
