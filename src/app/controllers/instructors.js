@@ -59,12 +59,18 @@ module.exports = {
         return response.send('Please, fill all fields!');
     }
 
+    const { id } = request.body;
+
     Instructor.update(request.body, function () {
-      return response.redirect(`/instructors/${request.body.id}`);
+      return response.redirect(`/instructors/${id}`);
     });
   },
 
   delete(request, response) {
-    return;
+    const { id } = request.body;
+
+    Instructor.delete(id, function () {
+      return response.redirect(`/instructors`);
+    });
   },
 };
