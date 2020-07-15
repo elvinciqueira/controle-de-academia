@@ -40,7 +40,15 @@ module.exports = {
   },
 
   edit(request, response) {
-    return;
+    const { id } = request.params;
+
+    Instructor.findById(id, function (instructor) {
+      if (!instructor) return response.send('Instructor not found!');
+
+      instructor.birth = date(instructor.birth).iso;
+
+      return response.render('instructors/edit', { instructor });
+    });
   },
 
   put(request, response) {
@@ -51,7 +59,9 @@ module.exports = {
         return response.send('Please, fill all fields!');
     }
 
-    return;
+    Instructor.update(request.body, function () {
+      return response.redirect(`/instructors/${request.body.id}`);
+    });
   },
 
   delete(request, response) {
