@@ -3,7 +3,7 @@ const db = require('../../config/db');
 
 module.exports = {
   all(callback) {
-    db.query(`SELECT * FROM instructors`, function (err, results) {
+    db.query(`SELECT * FROM members`, function (err, results) {
       if (err) throw `Database Error! ${err}`;
 
       callback(results.rows);
@@ -12,7 +12,7 @@ module.exports = {
 
   create(data, callback) {
     const query = `
-      INSERT INTO instructors (
+      INSERT INTO members (
         name,
         avatar_url,
         birth,
@@ -56,7 +56,7 @@ module.exports = {
   },
 
   findById(id, callback) {
-    db.query(`SELECT * FROM instructors WHERE id = $1`, [id], function (
+    db.query(`SELECT * FROM members WHERE id = $1`, [id], function (
       err,
       results
     ) {
@@ -68,7 +68,7 @@ module.exports = {
 
   update(data, callback) {
     const query = `
-      UPDATE instructors SET
+      UPDATE members SET
         avatar_url=($1),
         name=($2),
         birth=($3),
@@ -112,7 +112,7 @@ module.exports = {
   },
 
   delete(id, callback) {
-    db.query(`DELETE FROM instructors WHERE id = $1`, [id], function (
+    db.query(`DELETE FROM members WHERE id = $1`, [id], function (
       err,
       results
     ) {
