@@ -1,16 +1,28 @@
 const { age, date } = require('../../lib/utils');
 
+const Member = require('../models/Member');
+
 module.exports = {
   show(request, response) {
-    return;
+    const { id } = request.params;
+
+    Member.findById(id, function (member) {
+      if (!member) return response.send('Member not found!');
+
+      member.birth = date(member.birth).birthDay;
+
+      return response.render('members/show', { member });
+    });
   },
 
   index(request, response) {
-    return response.render('Instructors/index');
+    Member.all(function (members) {
+      return response.render('Members/index', { members });
+    });
   },
 
   create(request, response) {
-    return response.render('Instructors/create');
+    return response.render('Members/create');
   },
 
   post(request, response) {
@@ -21,13 +33,21 @@ module.exports = {
         return response.send('Please, fill all fields!');
     }
 
-    let { avatar_url, birth, gender, name, services } = request.body;
-
-    return;
+    Member.create(request.body, function (member) {
+      return response.redirect(`members/${member.id}`);
+    });
   },
 
   edit(request, response) {
-    return;
+    const { id } = request.params;
+
+    Member.findById(id, function (member) {
+      if (!member) return response.send('Member not found!');
+
+      member.birth = date(member.birth).iso;
+
+      return response.render('members/edit', { member });
+    });
   },
 
   put(request, response) {
@@ -38,12 +58,18 @@ module.exports = {
         return response.send('Please, fill all fields!');
     }
 
-    let { avatar_url, birth, gender, name, services } = request.body;
+    const { id } = request.body;
 
-    return;
+    Member.update(request.body, function () {
+      return response.redirect(`/members/${id}`);
+    });
   },
 
   delete(request, response) {
-    return;
+    const { id } = request.body;
+
+    Member.delete(id, function () {
+      return response.redirect(`/members`);
+    });
   },
 };
