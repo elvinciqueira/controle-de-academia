@@ -17,12 +17,14 @@ module.exports = {
 
   index(request, response) {
     Member.all(function (members) {
-      return response.render('Members/index', { members });
+      return response.render('members/index', { members });
     });
   },
 
   create(request, response) {
-    return response.render('Members/create');
+    Member.instructorsSelectOptions(function (options) {
+      return response.render('members/create', { instructorOptions: options });
+    });
   },
 
   post(request, response) {
@@ -46,7 +48,12 @@ module.exports = {
 
       member.birth = date(member.birth).iso;
 
-      return response.render('members/edit', { member });
+      Member.instructorsSelectOptions(function (options) {
+        return response.render('members/edit', {
+          member,
+          instructorOptions: options,
+        });
+      });
     });
   },
 

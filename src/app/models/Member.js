@@ -20,8 +20,9 @@ module.exports = {
         email,
         blood,
         weight,
-        height
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        height,
+        instructor_id
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
       RETURNING id
     `;
 
@@ -34,6 +35,7 @@ module.exports = {
       weight,
       height,
       blood,
+      instructor,
     } = data;
 
     const values = [
@@ -45,6 +47,7 @@ module.exports = {
       blood,
       weight,
       height,
+      instructor,
     ];
 
     db.query(query, values, function (err, results) {
@@ -72,11 +75,12 @@ module.exports = {
         name=($2),
         birth=($3),
         gender=($4),
-        email=($5)
-        blood=($6)
-        weight=($7)
-        height=($8)
-      WHERE id = $9
+        email=($5),
+        blood=($6),
+        weight=($7),
+        height=($8),
+        instructor_id=($9)
+      WHERE id = $10
     `;
 
     const {
@@ -89,6 +93,7 @@ module.exports = {
       weight,
       height,
       blood,
+      instructor,
     } = data;
 
     const values = [
@@ -100,6 +105,7 @@ module.exports = {
       blood,
       weight,
       height,
+      instructor,
       id,
     ];
 
@@ -118,6 +124,14 @@ module.exports = {
       if (err) throw `Database Error! ${err}`;
 
       return callback();
+    });
+  },
+
+  instructorsSelectOptions(callback) {
+    db.query(`SELECT name, id FROM instructors`, function (err, results) {
+      if (err) throw `Database error! ${err}`;
+
+      callback(results.rows);
     });
   },
 };
