@@ -45,7 +45,6 @@ module.exports = {
       blood,
       weight,
       height,
-      date(Date.now()).iso,
     ];
 
     db.query(query, values, function (err, results) {
