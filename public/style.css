@@ -264,15 +264,32 @@ td:last-child {
   text-align: center;
 }
 
-.table-container tr td:nth-child(2) span {
-  background-color: var(--secondary-color);
-  border-radius: 16px;
-  color: var(--gray);
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 700;
-  margin-right: 4px;
-  margin-top: 8px;
-  padding: 8px 16px;
-  text-transform: uppercase;
+/* FILTERS */
+.table-container .header {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 32px;
+}
+
+.table-container .header a {
+  margin: 0;
+  width: 120px;
+}
+
+.table-container .header form {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  grid-gap: 16px;
+}
+
+.table-container .header form button {
+  margin: 0;
+}
+
+.table-container .header form input {
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 4px 8px;
 }
