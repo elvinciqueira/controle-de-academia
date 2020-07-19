@@ -29,7 +29,16 @@ module.exports = {
       limit,
       offset,
       callback(instructors) {
-        return response.render('Instructors/index', { instructors, filter });
+        const pagination = {
+          total: Math.round(instructors[0].total / limit),
+          page,
+        };
+
+        return response.render('Instructors/index', {
+          instructors,
+          pagination,
+          filter,
+        });
       },
     };
 
